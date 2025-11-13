@@ -7,32 +7,15 @@ assignees: ''
 
 ---
 
-**Issue Type**
-bug
-
 **Bug Description**
-A clear and concise description of what the bug is.
 
 **Steps to Reproduce**
-Steps to reproduce the behavior:
-1. Start ROCK admin server with `rock admin start`
-2. Create environment with `rock.make("game:Sokoban-v0-easy")`
-3. Execute action `env.step("\\boxed{up}")`
-4. Observe error
 
 **Expected Behavior**
-A clear and concise description of what you expected to happen.
-Example: The environment should return observation, reward, terminated, truncated, info tuple.
 
 **Actual Behavior**
-A clear and concise description of what actually happened.
-Example: The environment crashed with ConnectionError or returned malformed response.
 
 **Error Logs**
-If applicable, paste relevant error logs or stack traces:
-```
-Paste error logs here
-```
 
 **Environment Information**
 - **OS**: [e.g. Ubuntu 22.04, macOS 13.0, Windows 11]
@@ -48,18 +31,11 @@ Paste error logs here
 - **Resource Allocation**: [e.g. memory=8g, cpus=2.0]
 
 **Component Affected**
-- [ ] SDK (Environment/Sandbox client)
-- [ ] Admin Server
-- [ ] Worker Node
-- [ ] Rocklet Service
-- [ ] CLI Tool
-- [ ] Environment Protocol (GEM/Bash/Chat)
-- [ ] Docker Integration
-- [ ] Other: ___________
-
-**Additional Context**
-Add any other context about the problem here, such as:
-- Related environment configurations
-- Network setup (if using distributed deployment)
-- Custom environment implementations
-- Integration with specific RL frameworks
+- [ ] Sandbox
+- [ ] Actions
+- [ ] Deployments
+- [ ] SDK & API
+- [ ] Envhub
+- [ ] CLI 
+- [ ] Performance & Optimization
+- [ ] Documentation & Examples
