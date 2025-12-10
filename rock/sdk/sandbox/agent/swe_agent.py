@@ -6,7 +6,7 @@ from rock.sdk.sandbox.agent.config import AgentConfig
 
 
 class SweAgentConfig(AgentConfig):
-    agent_type: Literal["swe"] = "swe"
+    agent_type: Literal["swe-agent"] = "swe-agent"
 
 
 class SweAgent(Agent):

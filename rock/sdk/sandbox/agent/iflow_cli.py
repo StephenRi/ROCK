@@ -6,7 +6,7 @@ from rock.sdk.sandbox.agent.config import AgentConfig
 
 
 class IFlowCliConfig(AgentConfig):
-    agent_type: Literal["iflow_cli"] = "iflow_cli"
+    agent_type: Literal["iflow-cli"] = "iflow-cli"
     install_url: str
 
 
