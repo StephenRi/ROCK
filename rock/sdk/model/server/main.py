@@ -1,4 +1,5 @@
 """LLM Service - FastAPI server for sandbox communication."""
+import argparse
 import asyncio
 from contextlib import asynccontextmanager
 
@@ -8,6 +9,7 @@ from fastapi.responses import JSONResponse
 
 from rock.logger import init_logger
 from rock.sdk.model.server.api.local import init_local_api, local_router
+from rock.sdk.model.server.api.proxy import proxy_router
 from rock.sdk.model.server.config import SERVICE_HOST, SERVICE_PORT
 
 # Configure logging
@@ -47,8 +49,22 @@ async def global_exception_handler(request, exc):
     )
 
 
-if __name__ == "__main__":
-    logger.info(f"Starting LLM Service on {SERVICE_HOST}:{SERVICE_PORT}")
-    asyncio.run(init_local_api())
-    app.include_router(local_router, prefix="", tags=["local"])
+def main(model_servie_type: str):
+    logger.info(f"Starting LLM Service on {SERVICE_HOST}:{SERVICE_PORT}, type: {model_servie_type}")
+    if model_servie_type == "local":
+        asyncio.run(init_local_api())
+        app.include_router(local_router, prefix="", tags=["local"])
+    else:
+        app.include_router(proxy_router, prefix="", tags=["proxy"])
     uvicorn.run(app, host=SERVICE_HOST, port=SERVICE_PORT, log_level="info", reload=False)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "--type", type=str, choices=["local", "proxy"], default="local", help="Type of LLM service (local/proxy)"
+    )
+    args = parser.parse_args()
+    model_servie_type = args.type
+
+    main(model_servie_type)
