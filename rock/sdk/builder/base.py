@@ -78,6 +78,7 @@ class EnvBuilder(ABC):
         await FileUtil.split_file(filename, concurrency, tmp_dir)
         tmp_filename_list = [f"{tmp_dir}/{i}.jsonl" for i in range(concurrency)]
 
+        logger.info(f"start to create sandbox group, size {concurrency}, start concurrency 10")
         sandbox_group = SandboxGroup(
             SandboxGroupConfig(
                 size=concurrency,
@@ -92,6 +93,7 @@ class EnvBuilder(ABC):
             )
         )
         await sandbox_group.start()
+        logger.info(f"{concurrency} sandboxes created, start to build remote")
 
         futures = []
         for i in range(concurrency):
